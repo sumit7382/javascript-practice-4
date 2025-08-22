@@ -36,23 +36,42 @@
 //     console.log("your data was not saved");
 // })
 
-function saveToDb(data){
-    return new Promise(resolve, reject);
-    let internetSpeed = Math.floor(Math.random()*10)+1;
-    if(internetSpeed>4){
-        resolve("success data was saved");
-    }else{
-        reject("failure data was not saved");
-    }
+// function saveToDb(data){
+//     return new Promise(resolve, reject);
+//     let internetSpeed = Math.floor(Math.random()*10)+1;
+//     if(internetSpeed>4){
+//         resolve("success data was saved");
+//     }else{
+//         reject("failure data was not saved");
+//     }
+// }
+
+// let request = saveToDb("Apna college");
+
+// request
+//     .then(()=>{
+//         console.log("promise was resolved");
+//     })
+//     .catch(()=>{
+//         console.log("promise was rejected");
+//     })
+
+let h1 = document.querySelector("h1");
+
+function changeColor(color, delay){
+    return new Promise((resolve, rejected) => {
+        setTimeout(()=>{
+            h1.style.color = color;
+            console.log(`color change to ${color}`);
+            resolve("color changed");
+        }, delay);
+    });
 }
 
-let request = saveToDb("Apna college");
-
-request
-    .then(()=>{
-        console.log("promise was resolved");
-    })
-    .catch(()=>{
-        console.log("promise was rejected");
-    })
+async function demo(){
+    await changeColor("red", 1000);
+    await changeColor("blue", 1000);
+    await changeColor("green", 1000);
+    changeColor("purple", 1000);
+}
 
