@@ -61,6 +61,10 @@ let h1 = document.querySelector("h1");
 function changeColor(color, delay){
     return new Promise((resolve, rejected) => {
         setTimeout(()=>{
+            let num = Math.floor(Math.random()*5)+1;
+            if(num>3){
+                rejected("promise rejected");
+            }
             h1.style.color = color;
             console.log(`color change to ${color}`);
             resolve("color changed");
@@ -69,9 +73,13 @@ function changeColor(color, delay){
 }
 
 async function demo(){
-    await changeColor("red", 1000);
-    await changeColor("blue", 1000);
-    await changeColor("green", 1000);
-    changeColor("purple", 1000);
+    try{
+        await changeColor("red", 1000);
+        await changeColor("blue", 1000);
+        await changeColor("green", 1000);
+        changeColor("purple", 1000);
+    }catch(err){
+        console.log(err);
+    }
 }
 
